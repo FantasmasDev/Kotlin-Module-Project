@@ -1,20 +1,17 @@
+import java.lang.Exception
 import java.util.Scanner
 
 abstract class Screen{
     abstract val massage: String
-    var command: String = ""
-    fun userInput(){
-        println(massage)
-        command = Scanner(System.`in`).nextLine()
+    var command: Int = 0
+
+    fun userInput(): Int{
+        command = Scanner(System.`in`).nextLine().toInt()
+        return command
     }
 
     abstract fun moveTo()
+
 }
 
-//when(command){
-////
-////            "1" -> TODO()
-////             "2" -> TODO()
-////            "3" -> TODO()
-////            else -> println("Неверная комманда")
-////        }
+

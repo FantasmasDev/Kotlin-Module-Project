@@ -1,5 +1,9 @@
 fun main(args: Array<String>) {
+    println()
+    println(1 === 0x01)
     val archiveScreen = Archive()
-    archiveScreen.userInput()
+    println(archiveScreen.archiveList)
+    archiveScreen.moveTo()
     println(archiveScreen.command)
 }
+
