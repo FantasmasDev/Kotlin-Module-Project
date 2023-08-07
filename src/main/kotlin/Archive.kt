@@ -4,4 +4,14 @@ class Archive: Screen() {
             "\n2. Выбрать архив." +
             "\n3. Выход"
 
+    override fun moveTo() {
+        while(true){
+            when(command){
+                "1" -> TODO()
+                "2" -> TODO()
+                "3" -> TODO()
+                else -> TODO()
+            }
+        }
+    }
 }
