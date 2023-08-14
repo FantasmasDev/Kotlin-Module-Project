@@ -1,40 +1,71 @@
-class Archive: Screen() {
-    val archiveList: MutableList<MutableList<String>> = mutableListOf()
+import java.util.*
 
-    override val massage = "Архив, введите номер команды: " +
-            "\n1. Создать архив. " +
-            "\n2. Выбрать архив." +
-            "\n3. Выход"
+class Archive(var archiveList: MutableList<MutableList<String>>) {
+    var archivePosition = 0
+    var notePosition = 0
 
+    fun showArchive(){
+        println("Архив:")
+        for((index, position) in archiveList.withIndex()) {
+            println("$index. $position")
+        }
+    }
 
-    override fun moveTo() {
-        println(massage)
+    fun showNoteArchive(){
+        println("Заметки:")
+        for((index, position) in archiveList[archivePosition].withIndex()) {
+            println("$index. $position")
+        }
+    }
+
+    fun showNote(){
+        println(archiveList[archivePosition][notePosition])
+    }
+
+    fun addArchiveNote(){
+        while(true){
+            println("Введите заметку:")
+            archiveList[archivePosition].add(Scanner(System.`in`).nextLine())
+            return
+        }
+    }
+
+    fun selectArchivePosition(){
+        archivePosition = userInput()
+    }
+
+    fun selectNotePosition(){
+        notePosition = userInput()
+    }
+
+    fun userInput(): Int{
         while(true){
             try {
-                when(userInput()){
-
-                    1 -> {
-                        val archiveCreator = ArchiveCreator()
-                        archiveCreator.moveTo()
-                        if (archiveCreator.isCreate == true) {
-                            archiveList.add(archiveCreator.newArchive)
-                            println(massage)
-                        } else {
-                            println("вы вернулись в меню архива, без создания нового архива.")
-                            println(massage)
-                        }
-                    }
-                    2 -> TODO()
-                    3 -> return
-                    !in 1..3 -> {
-                        println("Такого номера команды нет, введите команду снова.")
-                        println(massage)
-                    }
+                val command = Scanner(System.`in`).nextLine().toInt()
+                if(command <= archiveList.size - 1 && command >= 0){
+                    return command
+                }else{
+                    println("Команды под таким номером нет, введите комманду из списка")
                 }
-            }catch (e: Exception) {
-                println("Вы ввёли не цифру, следует вводить цифру.")
-                println(massage)
+            } catch (e: Exception) {
+                println("Вы ввели не цифру или архив пуст, следует вводить цифру.")
             }
         }
     }
+
+    fun checkEmpty(): Boolean {
+        if (archiveList.size == 0) {
+            println("Архив пуст")
+            return true
+        }
+        return false
+    }
+    fun checkEmpty(archivePosition: Int): Boolean {
+        if (archiveList[archivePosition].size == 0) {
+            println("Архив пуст")
+            return true
+        }
+        return false
+    }
+
 }
