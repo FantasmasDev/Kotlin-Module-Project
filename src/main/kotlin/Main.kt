@@ -1,3 +1,5 @@
 fun main(args: Array<String>) {
-    println("Hello World!")
+    val screen = Screen.Archive
+    screen.navigateTo(screen)
 }
+
